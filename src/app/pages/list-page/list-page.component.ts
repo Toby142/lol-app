@@ -26,4 +26,11 @@ export class ListPageComponent implements OnInit {
         this.champions = Object.values(response.data);
       });
   }
+
+  checkIfHighlighted(name: string) {
+    if (name === 'Talon' || name === 'Ornn') {
+      return true;
+    }
+    return false;
+  }
 }

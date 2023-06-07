@@ -27,6 +27,9 @@
     font-weight: bold;
     margin-bottom: 10px;
 }
+.highlight {
+    box-shadow: 0 5px 15px rgb(255, 217, 0);
+}
 
 /* if the browser is desktop width make the cards a specified width */
 @media (min-width: 768px) {
