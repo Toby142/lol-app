@@ -1,0 +1,36 @@
+.list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.champion {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    /* make it a nice card */
+    border: 1px solid #eaeaea;
+    border-radius: 3px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.champion-name {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.champion-title {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.list-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* if the browser is desktop width make the cards a specified width */
+@media (min-width: 768px) {
+    .champion {
+        width: 200px;
+    }
+}

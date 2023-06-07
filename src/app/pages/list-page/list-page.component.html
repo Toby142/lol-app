@@ -1,0 +1,9 @@
+<div class="list-title">{{champions.length}} Champions</div>
+<div class="list">
+    <div *ngFor="let champion of champions" class="champion">
+        <div class="champion-name">{{champion.name}}</div>
+        <div class="champion-title">{{champion.title}}</div>
+        <div>{{champion.blurb}}</div>
+    </div>
+</div>
+
