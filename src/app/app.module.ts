@@ -8,13 +8,15 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 
 // import the thing that i need to make api requests
 import { HttpClientModule } from '@angular/common/http';
+import { ChampionComponent } from './pages/champion/champion.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ListPageComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    ChampionComponent
   ],
   imports: [
     BrowserModule,

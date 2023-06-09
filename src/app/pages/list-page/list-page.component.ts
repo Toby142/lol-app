@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 interface Champion {
   name: string;
@@ -15,16 +16,18 @@ interface Champion {
 export class ListPageComponent implements OnInit {
   champions: Champion[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
     this.getChampions();
   }
+
   getChampions(): void {
     this.http.get<{ data: { [key: string]: Champion } }>('https://ddragon.leagueoflegends.com/cdn/11.18.1/data/en_US/champion.json')
       .subscribe(response => {
         this.champions = Object.values(response.data);
-      });
+      }
+    );
   }
 
   checkIfHighlighted(name: string) {
@@ -33,4 +36,10 @@ export class ListPageComponent implements OnInit {
     }
     return false;
   }
+
+  openChampion(name: string) {
+    // console.log('route to champion: ' + name);
+    this.router.navigate(['/champion', name]);
+  }
+
 }
