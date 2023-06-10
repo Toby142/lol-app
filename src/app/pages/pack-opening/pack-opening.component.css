@@ -1,0 +1,27 @@
+.packContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(55, 40, 40);
+    width: 260px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgb(0, 0, 0);
+    margin: 10px;
+}
+img {
+    margin-bottom: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.781);
+}
+.title {
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    /* give a nice glow */
+    text-shadow: 0 0 10px rgb(150, 150, 150);
+}

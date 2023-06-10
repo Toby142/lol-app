@@ -11,6 +11,7 @@ interface Champion {
 
 interface Skins {
   num: number;
+  name: string;
 }
 
 
@@ -23,8 +24,10 @@ interface Skins {
 export class PackOpeningComponent {
 
   champions: Champion[] = [];
+  packChampions: Champion[] = [];
+  packSkins: number[] = [];
 
-  packChamions: Champion[] = [];
+  statusMessage: string = '';
 
   constructor(private http: HttpClient) { }
 
@@ -33,7 +36,6 @@ export class PackOpeningComponent {
       .subscribe(response => {
         this.champions = Object.values(response.data);
         console.log(this.champions);
-        this.generatePack();
       }
     );
   }
@@ -43,51 +45,41 @@ export class PackOpeningComponent {
   }
 
   generatePack(){
-    // get 5 random champions from the list of champions, and put the id of the champion in an array
-    // return the array
-      const chapionIds = [];
+    const chapionIds = [];
+    this.packChampions = [];
+    this.packSkins = [];
 
-      if (this.champions.length !== 0) {
-        // get 5 random champions from the list of champions, and put the id of the champion in an array
-        for (let i = 0; i < 5; i++) {
-          const random = Math.floor(Math.random() * this.champions.length);
-          chapionIds.push(this.champions[random].id);
-        }
-        console.log(chapionIds);
+    if (this.champions.length !== 0) {
+      // get 5 random champions from the list of champions, and put the id of the champion in an array
+      for (let i = 0; i < 5; i++) {
+        const random = Math.floor(Math.random() * this.champions.length);
+        chapionIds.push(this.champions[random].id);
       }
-
-      for(let i = 0; i < chapionIds.length; i++) {
-        this.http.get<{ data: { [key: string]: Champion } }>('https://ddragon.leagueoflegends.com/cdn/11.18.1/data/en_US/champion/' + chapionIds[i] + '.json')
-        .subscribe(response => {
-          this.packChamions.push(Object.values(response.data)[0]);
-          console.log(this.packChamions);
+      console.log(chapionIds);
+    }
+    
+    for(let i = 0; i < chapionIds.length; i++) {
+      this.http.get<{ data: { [key: string]: Champion } }>('https://ddragon.leagueoflegends.com/cdn/11.18.1/data/en_US/champion/' + chapionIds[i] + '.json')
+      .subscribe(response => {
+          this.packChampions.push(Object.values(response.data)[0]);
+          console.log(this.packChampions);
+          if ( this.packChampions.length < 4) {
+            // default skin
+            this.packSkins.push(0);
+          } else {
+            // random skin that can't be 0
+            let random = Math.floor(Math.random() * Object.values(response.data)[0].skins.length);
+            if (random === 0) {
+              random++;
+            }
+            this.packSkins.push(random);
+          }
         }
       );
     }
-
-
-
-
-
-
-    // if (this.champions.length === 0) {
-    //   return [];
-    // } else {
-    //   const pack = [];
-    //   for (let i = 0; i < 5; i++) {
-    //     const random = Math.floor(Math.random() * this.champions.length);
-    //     pack.push(this.champions[random].id);
-    //   }
-    //   console.log(pack);
-    //   this.names = pack;
-    //   return pack;
-    // }
-
-    // https://ddragon.leagueoflegends.com/cdn/11.18.1/img/champion/Talon.png
   }
 
-  getChampion() {
-
+  getSkinUrl(championId: string, skin: number): string {
+    return 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/' + championId + '_' + skin + '.jpg';
   }
-
 }

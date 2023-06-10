@@ -1,6 +1,29 @@
-<p>pack-opening works!</p>
-<ul>
+<!-- <p>pack-opening works!</p>
 
-</ul>
+<p>
+    {{ this.packSkins | json }}
+</p>
+
+<img src="{{getSkinUrl('Talon', 2) }}" alt="">
+
+<ul *ngIf="packChampions.length === 5">
+    <li *ngFor="let card of packChampions; let i = index">
+        {{ card.name }}
+        {{ this.card.skins[this.packSkins[i]].name }}
+
+    </li>
+</ul> -->
+
+<!-- TODO: make it like a pokemon card, its kinda there, maybe it looks cool? -->
+
+<div class="packContainer">
+    <div class="card" *ngFor="let card of packChampions; let i = index">
+        <img src="{{ getSkinUrl(card.id, (card.skins[this.packSkins[i]].num) ) }}">
+        <div class="title">
+            <div *ngIf="packSkins[i] === 0">{{card.name}}</div>
+            <div *ngIf="packSkins[i] !== 0">{{ this.card.skins[this.packSkins[i]].name }}</div>
+        </div>
+    </div>
+</div>
 
 <button (click)="generatePack()">Open a pack!</button>
