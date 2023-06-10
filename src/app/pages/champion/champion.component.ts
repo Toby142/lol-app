@@ -40,9 +40,24 @@ export class ChampionComponent {
         console.log(this.champion);
       }
     );
-    console.log(this.champion.image);
+    // console.log(this.champion.image);
 
   }
+
+  getImgUlr() {
+    if(this.champion.name !== '') {
+    const name = window.location.pathname.split('/')[2];
+    return 'https://ddragon.leagueoflegends.com/cdn/11.18.1/img/champion/' + name + '.png';
+    } else {
+      return '';
+    }
+  }
+
+  // what is the url to get the skin img
+  
+
+  // make a funtion called getImgUrl() that returns the url of the image
+  // https://ddragon.leagueoflegends.com/cdn/11.18.1/img/champion/Talon.png
 
   ngOnInit(): void {
     this.getChampion();

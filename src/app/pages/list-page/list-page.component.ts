@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 interface Champion {
+  id: string;
   name: string;
   title: string;
   blurb: string;
@@ -26,6 +27,7 @@ export class ListPageComponent implements OnInit {
     this.http.get<{ data: { [key: string]: Champion } }>('https://ddragon.leagueoflegends.com/cdn/11.18.1/data/en_US/champion.json')
       .subscribe(response => {
         this.champions = Object.values(response.data);
+        console.log(this.champions);
       }
     );
   }

@@ -1,6 +1,6 @@
 <div class="list-title">{{champions.length}} Champions</div>
 <div class="list">
-    <div *ngFor="let champion of champions" (click)="openChampion(champion.name)" class="champion" [ngClass]="(checkIfHighlighted(champion.name)) ? 'highlight' : ''">
+    <div *ngFor="let champion of champions" (click)="openChampion(champion.id)" class="champion" [ngClass]="(checkIfHighlighted(champion.name)) ? 'highlight' : ''">
         <div class="champion-name">{{champion.name}}</div>
         <div class="champion-title">{{champion.title}}</div>
         <div>{{champion.blurb}}</div>

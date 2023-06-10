@@ -9,6 +9,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 // import the thing that i need to make api requests
 import { HttpClientModule } from '@angular/common/http';
 import { ChampionComponent } from './pages/champion/champion.component';
+import { PackOpeningComponent } from './pages/pack-opening/pack-opening.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { ChampionComponent } from './pages/champion/champion.component';
     AppComponent,
     ListPageComponent,
     SearchBarComponent,
-    ChampionComponent
+    ChampionComponent,
+    PackOpeningComponent
   ],
   imports: [
     BrowserModule,
